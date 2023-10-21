@@ -1,3 +1,10 @@
+"""
+Author: Cristian Cristea
+
+Summary: This module contains the FaceDetector class, which is used to detect
+         faces in images.
+"""
+
 from dataclasses import dataclass, astuple
 from pathlib import Path
 from typing import Final, Iterator
@@ -11,26 +18,55 @@ from numpy import ndarray
 
 @dataclass(slots=True, frozen=True)
 class FaceBoundingBox:
+    """
+    Represents a bounding box of a face in an image.
+    """
+
     start_x: int
     start_y: int
     end_x: int
     end_y: int
 
     def __iter__(self) -> Iterator[int]:
+        """
+        Iterates over the coordinates of the bounding box.
+
+        Returns:
+            Iterator[int]: An iterator over the coordinates of the bounding box
+        """
+
         return iter(astuple(self))
 
     def __repr__(self) -> str:
+        """
+        Returns a string representation of the bounding box.
+
+        Returns:
+            str: A string representation of the bounding box
+        """
+
         return F'({self.start_x}, {self.start_y}) -> ({self.end_x}, {self.end_y})'
 
 
 @dataclass(slots=True, frozen=True)
 class FaceDetectionResult:
+    """
+    Represents the result of a face detection.
+    """
+
     image_path: Path
     bounding_box: FaceBoundingBox
     face_path: Path
     confidence: float
 
     def __repr__(self) -> str:
+        """
+        Returns a string representation of the face detection result.
+
+        Returns:
+            str: A string representation of the face detection result
+        """
+
         shorter_path: Final[str] = F'{self.image_path.parents[0].name}/{self.image_path.name}'
         shorter_face_path: Final[str] = F'{self.face_path.parents[1].name}/{self.face_path.parents[0].name}/{self.face_path.name}'
 
@@ -38,10 +74,29 @@ class FaceDetectionResult:
 
 
 class FaceDetector:
+    """
+    Represents a face detector.
+    """
+
     _DETECTOR = vision.FaceDetector.create_from_model_path('BlazeFace.tflite')
 
     @classmethod
     def detect_face(cls, image_path: Path) -> FaceDetectionResult:
+        """
+        Detects a face in an image and also saves the face in a separate file.
+
+        Args:
+            image_path (Path): The path to the image
+
+        Raises:
+            RuntimeError: If the image does not exist
+            RuntimeError: If the image is not a file
+            RuntimeError: If no face is detected in the image
+
+        Returns:
+            FaceDetectionResult: The result of the face detection
+        """
+
         path = Path(image_path)
 
         if not path.exists():

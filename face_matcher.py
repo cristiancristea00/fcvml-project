@@ -1,3 +1,10 @@
+"""
+Author: Cristian Cristea
+
+Summary: This module contains the FaceMatcher class, which is used to compare
+         faces.
+"""
+
 import pickle
 from dataclasses import dataclass
 from pathlib import Path
@@ -9,19 +16,58 @@ from utils import IMAGE_EXTENSIONS
 
 @dataclass(slots=True, frozen=True)
 class MatchResult:
+    """
+    Represents the result of a face match.
+    """
+
     face_embedding: FaceEmbedding
     similarity: float
 
     def __repr__(self) -> str:
+        """
+        Returns a string representation of the face match result.
+
+        Returns:
+            str: A string representation of the face match result
+        """
         return F'{self.face_embedding}\nSimilarity: {self.similarity * 100:.2f}%'
 
 
 class FaceMatcher:
+    """
+    Class used to compare faces.
+    """
+
     def __init__(self, image_path: Path, dataset_path: Path, cache: bool = True) -> None:
+        """
+        Creates a FaceMatcher object.
+
+        Args:
+            image_path (Path): The path to the image containing the face
+            dataset_path (Path): The path to the dataset containing the reference images
+            cache (bool, optional): Whether to cache the embeddings of the reference images. Defaults to True.
+        """
+
         self.face_embedding: Final[FaceEmbedding] = FaceEmbedder.embed_face(image_path)
         self.similarities: Final[list[MatchResult]] = self._get_similarities(dataset_path, cache)
 
     def _get_similarities(self, dataset_path: Path, cache: bool) -> list[MatchResult]:
+        """
+        Gets the similarities between the face in the image and the faces in the
+        dataset.
+
+        Args:
+            dataset_path (Path): The path to the dataset containing the reference images
+            cache (bool): Whether to cache the embeddings of the reference images
+
+        Raises:
+            RuntimeError: If the dataset does not exist
+            RuntimeError: If the dataset is not a directory
+
+        Returns:
+            list[MatchResult]: The similarities between the face in the image and the faces in the dataset
+        """
+
         path: Final[Path] = Path(dataset_path).resolve()
 
         if not path.exists():
@@ -55,4 +101,14 @@ class FaceMatcher:
         return result
 
     def get_top_matches(self, number: int = 3) -> list[MatchResult]:
+        """
+        Gets the top N matches.
+
+        Args:
+            number (int, optional): The number of matches to return. Defaults to 3.
+
+        Returns:
+            list[MatchResult]: The top N matches
+        """
+
         return self.similarities[:number]
