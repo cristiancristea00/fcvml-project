@@ -5,6 +5,7 @@ from typing import Final
 from mediapipe import Image
 from mediapipe.tasks.python import vision
 from mediapipe.tasks.python.components.containers import Embedding
+from numpy import ndarray
 
 from face_detector import FaceDetectionResult, FaceDetector
 
@@ -13,6 +14,12 @@ from face_detector import FaceDetectionResult, FaceDetector
 class FaceEmbedding:
     detection: FaceDetectionResult
     embedding: Embedding
+
+    def __repr__(self) -> str:
+        embedding_vals: Final[ndarray] = self.embedding.embedding
+        embedding: Final[str] = F'({embedding_vals[0]:.3f}, {embedding_vals[1]:.3f}, {embedding_vals[2]:.3f}, ..., {embedding_vals[-2]:.3f}, {embedding_vals[-1]:.3f})'
+
+        return F'Face detection: {self.detection}\nEmbedding: {embedding}'
 
 
 class FaceEmbedder:

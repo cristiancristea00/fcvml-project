@@ -19,6 +19,9 @@ class FaceBoundingBox:
     def __iter__(self) -> Iterator[int]:
         return iter(astuple(self))
 
+    def __repr__(self) -> str:
+        return F'({self.start_x}, {self.start_y}) -> ({self.end_x}, {self.end_y})'
+
 
 @dataclass(slots=True, frozen=True)
 class FaceDetectionResult:
@@ -26,6 +29,12 @@ class FaceDetectionResult:
     bounding_box: FaceBoundingBox
     face_path: Path
     confidence: float
+
+    def __repr__(self) -> str:
+        shorter_path: Final[str] = F'{self.image_path.parents[0].name}/{self.image_path.name}'
+        shorter_face_path: Final[str] = F'{self.face_path.parents[1].name}/{self.face_path.parents[0].name}/{self.face_path.name}'
+
+        return F"'{shorter_path}' -> '{shorter_face_path}' (Confidence: {self.confidence * 100:.2f}%)"
 
 
 class FaceDetector:
