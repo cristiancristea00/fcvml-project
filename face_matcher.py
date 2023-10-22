@@ -38,7 +38,7 @@ class FaceMatcher:
     Class used to compare faces.
     """
 
-    def __init__(self, image_path: Path, dataset_path: Path, cache: bool = True) -> None:
+    def __init__(self, image_path: Path, dataset_path: Path, cache: bool = True, large: bool = True) -> None:
         """
         Creates a FaceMatcher object.
 
@@ -46,9 +46,11 @@ class FaceMatcher:
             image_path (Path): The path to the image containing the face
             dataset_path (Path): The path to the dataset containing the reference images
             cache (bool, optional): Whether to cache the embeddings of the reference images. Defaults to True.
+            large (bool, optional): Whether to use the large embedding model. Defaults to True.
         """
 
-        self.face_embedding: Final[FaceEmbedding] = FaceEmbedder.embed_face(image_path)
+        self.large: Final[bool] = large
+        self.face_embedding: Final[FaceEmbedding] = FaceEmbedder.embed_face(image_path, self.large)
         self.similarities: Final[list[MatchResult]] = self._get_similarities(dataset_path, cache)
 
     def _get_similarities(self, dataset_path: Path, cache: bool) -> list[MatchResult]:
@@ -84,7 +86,7 @@ class FaceMatcher:
         else:
             file_globs: Final[Iterator[Iterator[Path]]] = (path.rglob(F'*{ext}') for ext in IMAGE_EXTENSIONS)
             files: Final[Iterator[Path]] = (file for glob in file_globs for file in glob if 'faces' not in str(file))
-            embeddings: list[FaceEmbedding] = [FaceEmbedder.embed_face(file) for file in files]
+            embeddings: list[FaceEmbedding] = [FaceEmbedder.embed_face(file, self.large) for file in files]
 
             with picked_path.open('wb') as pickled_file:
                 pickle.dump(embeddings, pickled_file)

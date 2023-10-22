@@ -45,15 +45,17 @@ class FaceEmbedder:
     Class used to create embeddings for faces.
     """
 
-    _EMBEDDER = vision.ImageEmbedder.create_from_model_path('MobileNet-V3-Large.tflite')
+    _EMBEDDER_LARGE = vision.ImageEmbedder.create_from_model_path('MobileNet-V3-Large.tflite')
+    _EMBEDDER_SMALL = vision.ImageEmbedder.create_from_model_path('MobileNet-V3-Small.tflite')
 
     @classmethod
-    def embed_face(cls, image_path: Path) -> FaceEmbedding:
+    def embed_face(cls, image_path: Path, large: bool = True) -> FaceEmbedding:
         """
         Creates an embedding for a face.
 
         Args:
             image_path (Path): The path to the image containing the face
+            large (bool, optional): Whether to use the large model. Defaults to True.
 
         Returns:
             FaceEmbedding: The face embedding
@@ -61,7 +63,7 @@ class FaceEmbedder:
 
         detected_face: Final[FaceDetectionResult] = FaceDetector.detect_face(image_path)
         face: Final[Image] = Image.create_from_file(str(detected_face.face_path))
-        embedding: Final[Embedding] = cls._EMBEDDER.embed(face).embeddings[0]
+        embedding: Final[Embedding] = cls._EMBEDDER_LARGE.embed(face).embeddings[0] if large else cls._EMBEDDER_SMALL.embed(face).embeddings[0]
 
         result: Final[FaceEmbedding] = FaceEmbedding(
             detection=detected_face,
