@@ -78,7 +78,7 @@ class FaceDetector:
     Represents a face detector.
     """
 
-    _DETECTOR = vision.FaceDetector.create_from_model_path('BlazeFace.tflite')
+    _DETECTOR = vision.FaceDetector.create_from_model_path(str(Path('models', 'BlazeFace.tflite')))
 
     @classmethod
     def detect_face(cls, image_path: Path) -> FaceDetectionResult:

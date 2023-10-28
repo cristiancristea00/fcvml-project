@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Final, Iterator
 
-from face_embedder import FaceEmbedding, FaceEmbedder
+from face_embedder import FaceEmbedding, FaceEmbedder, EmbedderChoiceType, EmbedderChoice
 from utils import IMAGE_EXTENSIONS
 
 
@@ -38,7 +38,7 @@ class FaceMatcher:
     Class used to compare faces.
     """
 
-    def __init__(self, image_path: Path, dataset_path: Path, cache: bool = True, large: bool = True) -> None:
+    def __init__(self, image_path: Path, dataset_path: Path, cache: bool = True, model: EmbedderChoiceType = EmbedderChoice.FACE) -> None:
         """
         Creates a FaceMatcher object.
 
@@ -46,11 +46,11 @@ class FaceMatcher:
             image_path (Path): The path to the image containing the face
             dataset_path (Path): The path to the dataset containing the reference images
             cache (bool, optional): Whether to cache the embeddings of the reference images. Defaults to True.
-            large (bool, optional): Whether to use the large embedding model. Defaults to True.
+            model (EmbedderChoiceType, optional): The model to use for the embedding. Defaults to EmbedderChoice.FACE.
         """
 
-        self.large: Final[bool] = large
-        self.face_embedding: Final[FaceEmbedding] = FaceEmbedder.embed_face(image_path, self.large)
+        self.model: Final[EmbedderChoiceType] = model
+        self.face_embedding: Final[FaceEmbedding] = FaceEmbedder.embed_face(image_path, self.model)
         self.similarities: Final[list[MatchResult]] = self._get_similarities(dataset_path, cache)
 
     def _get_similarities(self, dataset_path: Path, cache: bool) -> list[MatchResult]:
@@ -86,7 +86,7 @@ class FaceMatcher:
         else:
             file_globs: Final[Iterator[Iterator[Path]]] = (path.rglob(F'*{ext}') for ext in IMAGE_EXTENSIONS)
             files: Final[Iterator[Path]] = (file for glob in file_globs for file in glob if 'faces' not in str(file))
-            embeddings: list[FaceEmbedding] = [FaceEmbedder.embed_face(file, self.large) for file in files]
+            embeddings: list[FaceEmbedding] = [FaceEmbedder.embed_face(file, self.model) for file in files]
 
             with picked_path.open('wb') as pickled_file:
                 pickle.dump(embeddings, pickled_file)

@@ -11,11 +11,12 @@ from typing import Iterator, Final
 
 from colorama import Fore
 
+from face_embedder import EmbedderChoiceType, EmbedderChoice
 from face_matcher import FaceMatcher, MatchResult
 from utils import IMAGE_EXTENSIONS
 
 CACHE_DATASET: Final[bool] = True
-LARGE_MODEL: Final[bool] = True
+MODEL: Final[EmbedderChoiceType] = EmbedderChoice.FACE
 
 
 def main() -> None:
@@ -69,7 +70,7 @@ def get_result(image: Path, reference_dataset: Path) -> tuple[str, list[MatchRes
     Returns:
         tuple[str, list[MatchResult]]: The name of the image and the top matches
     """
-    face_matcher = FaceMatcher(image, reference_dataset, cache=CACHE_DATASET, large=LARGE_MODEL)
+    face_matcher = FaceMatcher(image, reference_dataset, cache=CACHE_DATASET, model=MODEL)
 
     short_name: Final[str] = F'{image.parent.name}/{image.name}'
     top: Final[list[MatchResult]] = face_matcher.get_top_matches()
