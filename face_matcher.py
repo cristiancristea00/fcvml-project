@@ -23,6 +23,16 @@ class MatchResult:
     face_embedding: FaceEmbedding
     similarity: float
 
+    @property
+    def similarity_str(self) -> str:
+        """
+        Returns a string representation of the similarity.
+
+        Returns:
+            str: A string representation of the similarity
+        """
+        return F'{self.similarity * 100:.2f}%'
+
     def __repr__(self) -> str:
         """
         Returns a string representation of the face match result.
@@ -30,7 +40,7 @@ class MatchResult:
         Returns:
             str: A string representation of the face match result
         """
-        return F'{self.face_embedding}\nSimilarity: {self.similarity * 100:.2f}%'
+        return F'{self.face_embedding}\nSimilarity: {self.similarity_str}'
 
 
 class FaceMatcher:

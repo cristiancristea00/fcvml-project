@@ -59,6 +59,30 @@ class FaceDetectionResult:
     face_path: Path
     confidence: float
 
+    @property
+    def shorter_path(self) -> str:
+        """
+        Returns a shorter version of the image path.
+
+        Returns:
+            str: A shorter version of the image path
+        """
+
+        subject_idx = str(self.image_path).find('subject')
+        return str(self.image_path)[subject_idx:]
+
+    @property
+    def relative_path(self) -> str:
+        """
+        Returns a relative version of the face path.
+
+        Returns:
+            str: A relative version of the face path
+        """
+
+        dataset_idx = str(self.image_path).find('dataset')
+        return str(self.image_path)[dataset_idx:]
+
     def __repr__(self) -> str:
         """
         Returns a string representation of the face detection result.
@@ -67,10 +91,10 @@ class FaceDetectionResult:
             str: A string representation of the face detection result
         """
 
-        shorter_path: Final[str] = F'{self.image_path.parents[0].name}/{self.image_path.name}'
-        shorter_face_path: Final[str] = F'{self.face_path.parents[1].name}/{self.face_path.parents[0].name}/{self.face_path.name}'
+        subject_idx = str(self.image_path).find('subject')
+        shorter_face_path = str(self.face_path)[subject_idx:]
 
-        return F"'{shorter_path}' -> '{shorter_face_path}' (Confidence: {self.confidence * 100:.2f}%)"
+        return F"'{self.shorter_path}' -> '{shorter_face_path}' (Confidence: {self.confidence * 100:.2f}%)"
 
 
 class FaceDetector:
