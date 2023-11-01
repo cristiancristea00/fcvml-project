@@ -23,9 +23,9 @@ class EmbedderChoice(Enum):
     Enum used to represent the available face embedding models.
     """
 
-    LARGE = 'MobileNet-V3-Large.tflite'
-    SMALL = 'MobileNet-V3-Small.tflite'
-    FACE = 'FaceNet.tflite'
+    LARGE = 'MobileNet-V3-Large'
+    SMALL = 'MobileNet-V3-Small'
+    FACE = 'FaceNet'
 
 
 EmbedderChoiceType: TypeAlias = Literal[EmbedderChoice.LARGE, EmbedderChoice.SMALL, EmbedderChoice.FACE]
@@ -61,10 +61,11 @@ class FaceEmbedder:
     """
 
     _MODELS_DIR: Final[Path] = Path('models')
+    _MODEL_EXTENSION: Final[str] = '.tflite'
 
-    _EMBEDDER_LARGE = vision.ImageEmbedder.create_from_model_path(str(_MODELS_DIR / EmbedderChoice.LARGE.value))
-    _EMBEDDER_SMALL = vision.ImageEmbedder.create_from_model_path(str(_MODELS_DIR / EmbedderChoice.SMALL.value))
-    _EMBEDDER_FACE = vision.ImageEmbedder.create_from_model_path(str(_MODELS_DIR / EmbedderChoice.FACE.value))
+    _EMBEDDER_LARGE = vision.ImageEmbedder.create_from_model_path(F'{_MODELS_DIR / EmbedderChoice.LARGE.value}{_MODEL_EXTENSION}')
+    _EMBEDDER_SMALL = vision.ImageEmbedder.create_from_model_path(F'{_MODELS_DIR / EmbedderChoice.SMALL.value}{_MODEL_EXTENSION}')
+    _EMBEDDER_FACE = vision.ImageEmbedder.create_from_model_path(F'{_MODELS_DIR / EmbedderChoice.FACE.value}{_MODEL_EXTENSION}')
 
     @classmethod
     def embed_face(cls, image_path: Path, model: EmbedderChoiceType = EmbedderChoice.FACE) -> FaceEmbedding:

@@ -1,5 +1,7 @@
 # Fundamentals of Computer Vision and Machine Learning Project
 
+## FaceNet
+
 |                   Test Image                   |                      1st Match                      | 1st Score |                      2nd Match                      | 2nd Score |                      3rd Match                      | 3rd Score |
 |:----------------------------------------------:|:---------------------------------------------------:|:---------:|:---------------------------------------------------:|:---------:|:---------------------------------------------------:|:---------:|
 | ![subject1/1.jpg](dataset/test/subject1/1.jpg) | ![subject1/5.jpg](dataset/reference/subject1/5.jpg) |  82.35%   | ![subject1/6.jpg](dataset/reference/subject1/6.jpg) |  77.27%   | ![subject1/3.jpg](dataset/reference/subject1/3.jpg) |  77.21%   |
@@ -17,3 +19,43 @@
 | ![subject5/1.jpg](dataset/test/subject5/1.jpg) | ![subject5/1.jpg](dataset/reference/subject5/1.jpg) |  82.85%   | ![subject5/4.jpg](dataset/reference/subject5/4.jpg) |  81.44%   | ![subject5/5.jpg](dataset/reference/subject5/5.jpg) |  79.24%   |
 | ![subject5/2.jpg](dataset/test/subject5/2.jpg) | ![subject5/4.jpg](dataset/reference/subject5/4.jpg) |  79.23%   | ![subject5/1.jpg](dataset/reference/subject5/1.jpg) |  78.15%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  76.25%   |
 | ![subject5/3.jpg](dataset/test/subject5/3.jpg) | ![subject5/4.jpg](dataset/reference/subject5/4.jpg) |  89.40%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  88.84%   | ![subject5/5.jpg](dataset/reference/subject5/5.jpg) |  82.53%   |
+
+## MobileNet-V3-Large
+
+|                   Test Image                   |                      1st Match                      | 1st Score |                      2nd Match                      | 2nd Score |                      3rd Match                      | 3rd Score |
+|:----------------------------------------------:|:---------------------------------------------------:|:---------:|:---------------------------------------------------:|:---------:|:---------------------------------------------------:|:---------:|
+| ![subject1/1.jpg](dataset/test/subject1/1.jpg) | ![subject1/6.jpg](dataset/reference/subject1/6.jpg) |  79.52%   | ![subject2/4.jpg](dataset/reference/subject2/4.jpg) |  79.02%   | ![subject1/2.jpg](dataset/reference/subject1/2.jpg) |  78.34%   |
+| ![subject1/2.jpg](dataset/test/subject1/2.jpg) | ![subject5/2.jpg](dataset/reference/subject5/2.jpg) |  77.19%   | ![subject1/5.jpg](dataset/reference/subject1/5.jpg) |  76.50%   | ![subject1/6.jpg](dataset/reference/subject1/6.jpg) |  76.21%   |
+| ![subject1/3.jpg](dataset/test/subject1/3.jpg) | ![subject5/2.jpg](dataset/reference/subject5/2.jpg) |  81.99%   | ![subject1/6.jpg](dataset/reference/subject1/6.jpg) |  79.21%   | ![subject2/3.jpg](dataset/reference/subject2/3.jpg) |  77.61%   |
+| ![subject2/1.jpg](dataset/test/subject2/1.jpg) | ![subject1/2.jpg](dataset/reference/subject1/2.jpg) |  59.95%   | ![subject5/5.jpg](dataset/reference/subject5/5.jpg) |  58.66%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  58.47%   |
+| ![subject2/2.jpg](dataset/test/subject2/2.jpg) | ![subject2/7.jpg](dataset/reference/subject2/7.jpg) |  63.81%   | ![subject2/5.jpg](dataset/reference/subject2/5.jpg) |  61.33%   | ![subject2/2.jpg](dataset/reference/subject2/2.jpg) |  52.78%   |
+| ![subject2/3.jpg](dataset/test/subject2/3.jpg) | ![subject2/2.jpg](dataset/reference/subject2/2.jpg) |  75.85%   | ![subject2/5.jpg](dataset/reference/subject2/5.jpg) |  62.18%   | ![subject2/1.jpg](dataset/reference/subject2/1.jpg) |  61.99%   |
+| ![subject3/1.jpg](dataset/test/subject3/1.jpg) | ![subject3/4.jpg](dataset/reference/subject3/4.jpg) |  81.77%   | ![subject3/6.jpg](dataset/reference/subject3/6.jpg) |  72.49%   | ![subject3/1.jpg](dataset/reference/subject3/1.jpg) |  63.84%   |
+| ![subject3/2.jpg](dataset/test/subject3/2.jpg) | ![subject3/4.jpg](dataset/reference/subject3/4.jpg) |  70.92%   | ![subject3/6.jpg](dataset/reference/subject3/6.jpg) |  70.91%   | ![subject3/1.jpg](dataset/reference/subject3/1.jpg) |  67.38%   |
+| ![subject3/3.jpg](dataset/test/subject3/3.jpg) | ![subject3/2.jpg](dataset/reference/subject3/2.jpg) |  68.49%   | ![subject3/4.jpg](dataset/reference/subject3/4.jpg) |  66.80%   | ![subject3/6.jpg](dataset/reference/subject3/6.jpg) |  60.01%   |
+| ![subject4/1.jpg](dataset/test/subject4/1.jpg) | ![subject4/4.jpg](dataset/reference/subject4/4.jpg) |  81.58%   | ![subject4/3.jpg](dataset/reference/subject4/3.jpg) |  78.94%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  78.27%   |
+| ![subject4/2.jpg](dataset/test/subject4/2.jpg) | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  82.60%   | ![subject5/5.jpg](dataset/reference/subject5/5.jpg) |  82.56%   | ![subject4/4.jpg](dataset/reference/subject4/4.jpg) |  80.81%   |
+| ![subject4/3.jpg](dataset/test/subject4/3.jpg) | ![subject4/3.jpg](dataset/reference/subject4/3.jpg) |  76.66%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  76.47%   | ![subject4/5.jpg](dataset/reference/subject4/5.jpg) |  72.34%   |
+| ![subject5/1.jpg](dataset/test/subject5/1.jpg) | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  88.72%   | ![subject5/5.jpg](dataset/reference/subject5/5.jpg) |  82.77%   | ![subject4/1.jpg](dataset/reference/subject4/1.jpg) |  81.96%   |
+| ![subject5/2.jpg](dataset/test/subject5/2.jpg) | ![subject4/4.jpg](dataset/reference/subject4/4.jpg) |  81.22%   | ![subject5/7.jpg](dataset/reference/subject5/7.jpg) |  80.94%   | ![subject4/3.jpg](dataset/reference/subject4/3.jpg) |  77.17%   |
+| ![subject5/3.jpg](dataset/test/subject5/3.jpg) | ![subject5/5.jpg](dataset/reference/subject5/5.jpg) |  70.87%   | ![subject5/4.jpg](dataset/reference/subject5/4.jpg) |  70.67%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  64.62%   |
+
+## MobileNet-V3-Small
+
+|                   Test Image                   |                      1st Match                      | 1st Score |                      2nd Match                      | 2nd Score |                      3rd Match                      | 3rd Score |
+|:----------------------------------------------:|:---------------------------------------------------:|:---------:|:---------------------------------------------------:|:---------:|:---------------------------------------------------:|:---------:|
+| ![subject1/1.jpg](dataset/test/subject1/1.jpg) | ![subject1/1.jpg](dataset/reference/subject1/1.jpg) |  81.21%   | ![subject2/3.jpg](dataset/reference/subject2/3.jpg) |  78.39%   | ![subject2/4.jpg](dataset/reference/subject2/4.jpg) |  77.43%   |
+| ![subject1/2.jpg](dataset/test/subject1/2.jpg) | ![subject1/5.jpg](dataset/reference/subject1/5.jpg) |  78.20%   | ![subject5/2.jpg](dataset/reference/subject5/2.jpg) |  73.56%   | ![subject2/3.jpg](dataset/reference/subject2/3.jpg) |  69.52%   |
+| ![subject1/3.jpg](dataset/test/subject1/3.jpg) | ![subject1/1.jpg](dataset/reference/subject1/1.jpg) |  87.16%   | ![subject2/3.jpg](dataset/reference/subject2/3.jpg) |  80.75%   | ![subject5/7.jpg](dataset/reference/subject5/7.jpg) |  77.60%   |
+| ![subject2/1.jpg](dataset/test/subject2/1.jpg) | ![subject4/4.jpg](dataset/reference/subject4/4.jpg) |  65.38%   | ![subject5/4.jpg](dataset/reference/subject5/4.jpg) |  64.50%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  63.80%   |
+| ![subject2/2.jpg](dataset/test/subject2/2.jpg) | ![subject2/5.jpg](dataset/reference/subject2/5.jpg) |  68.25%   | ![subject2/7.jpg](dataset/reference/subject2/7.jpg) |  65.12%   | ![subject2/2.jpg](dataset/reference/subject2/2.jpg) |  57.36%   |
+| ![subject2/3.jpg](dataset/test/subject2/3.jpg) | ![subject2/2.jpg](dataset/reference/subject2/2.jpg) |  78.20%   | ![subject2/5.jpg](dataset/reference/subject2/5.jpg) |  77.38%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  60.70%   |
+| ![subject3/1.jpg](dataset/test/subject3/1.jpg) | ![subject3/4.jpg](dataset/reference/subject3/4.jpg) |  78.63%   | ![subject3/6.jpg](dataset/reference/subject3/6.jpg) |  72.13%   | ![subject3/1.jpg](dataset/reference/subject3/1.jpg) |  68.02%   |
+| ![subject3/2.jpg](dataset/test/subject3/2.jpg) | ![subject3/4.jpg](dataset/reference/subject3/4.jpg) |  71.98%   | ![subject3/5.jpg](dataset/reference/subject3/5.jpg) |  71.45%   | ![subject3/1.jpg](dataset/reference/subject3/1.jpg) |  69.20%   |
+| ![subject3/3.jpg](dataset/test/subject3/3.jpg) | ![subject3/1.jpg](dataset/reference/subject3/1.jpg) |  66.28%   | ![subject3/2.jpg](dataset/reference/subject3/2.jpg) |  66.09%   | ![subject3/4.jpg](dataset/reference/subject3/4.jpg) |  65.66%   |
+| ![subject4/1.jpg](dataset/test/subject4/1.jpg) | ![subject4/4.jpg](dataset/reference/subject4/4.jpg) |  81.62%   | ![subject4/7.jpg](dataset/reference/subject4/7.jpg) |  80.16%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  79.37%   |
+| ![subject4/2.jpg](dataset/test/subject4/2.jpg) | ![subject5/5.jpg](dataset/reference/subject5/5.jpg) |  83.44%   | ![subject1/1.jpg](dataset/reference/subject1/1.jpg) |  82.02%   | ![subject4/4.jpg](dataset/reference/subject4/4.jpg) |  81.94%   |
+| ![subject4/3.jpg](dataset/test/subject4/3.jpg) | ![subject4/3.jpg](dataset/reference/subject4/3.jpg) |  74.36%   | ![subject4/5.jpg](dataset/reference/subject4/5.jpg) |  72.24%   | ![subject4/2.jpg](dataset/reference/subject4/2.jpg) |  71.45%   |
+| ![subject5/1.jpg](dataset/test/subject5/1.jpg) | ![subject2/3.jpg](dataset/reference/subject2/3.jpg) |  79.01%   | ![subject4/1.jpg](dataset/reference/subject4/1.jpg) |  77.95%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  77.82%   |
+| ![subject5/2.jpg](dataset/test/subject5/2.jpg) | ![subject5/7.jpg](dataset/reference/subject5/7.jpg) |  75.15%   | ![subject4/4.jpg](dataset/reference/subject4/4.jpg) |  71.74%   | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  67.95%   |
+| ![subject5/3.jpg](dataset/test/subject5/3.jpg) | ![subject5/6.jpg](dataset/reference/subject5/6.jpg) |  76.99%   | ![subject5/4.jpg](dataset/reference/subject5/4.jpg) |  76.27%   | ![subject5/5.jpg](dataset/reference/subject5/5.jpg) |  75.81%   |
