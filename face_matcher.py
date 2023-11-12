@@ -31,7 +31,7 @@ class MatchResult:
         Returns:
             str: A string representation of the similarity
         """
-        return F'{self.similarity * 100:.2f}%'
+        return F'{self.similarity:.3f}'
 
     def __repr__(self) -> str:
         """
@@ -100,7 +100,7 @@ class FaceMatcher:
         try:
             similarities: list[tuple[FaceEmbedding, float]] = self.get_similarities(embeddings)
         except ValueError:
-            embeddings = self.get_embeddings(path)
+            embeddings: list[FaceEmbedding] = self.get_embeddings(path)
             self.write_embeddings(pickled_path, embeddings)
             similarities: list[tuple[FaceEmbedding, float]] = self.get_similarities(embeddings)
 
